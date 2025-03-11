@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QR de mi gata Mimi</title>
+    <script>
+        function enviarUbicacion() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(pos => {
+                    let lat = pos.coords.latitude;
+                    let lon = pos.coords.longitude;
+                    let url = `https://api.whatsapp.com/send?phone=1136574767&text=Ubicación de Mimi: https://www.google.com/maps?q=${lat},${lon}`;
+                    window.location.href = url;
+                }, error => {
+                    alert("No se pudo obtener la ubicación.");
+                });
+            } else {
+                alert("Tu navegador no soporta geolocalización.");
+            }
+        }
+    </script>
+</head>
+<body onload="enviarUbicacion()">
+    <h2>Escaneaste el QR de mi gata Mimi</h2>
+    <p>Enviando ubicación...</p>
+</body>
+</html>
